@@ -29,8 +29,8 @@ void test_show_bytes(int val) {
 }
 
 /*
-$ gcc chapter2/2.1.3/main.c chapter2/show_bytes.c -o chapter2/2.1.3/output
-$ chapter2/2.1.3/output
+$ gcc chapter2/2.1.3/main.c chapter2/show_bytes.c -o chapter2/2.1.3/output.o
+$ chapter2/2.1.3/output.o
 39 30 00 00
 00 e4 40 46
 f8 76 e8 c4 ff 7f 00 00
