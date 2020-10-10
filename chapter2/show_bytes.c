@@ -5,8 +5,8 @@
 void show_bytes(byte_pointer start, size_t len) {
     int i;
     for (i = 0; i < len; i++) {
-        // printf(" %.2x", start[i]); /* hexadecimal */
-        printf(" %.2d", start[i]); /* decimal */
+        printf(" %.2x", start[i]); /* hexadecimal */
+        // printf(" %.2d", start[i]); /* decimal */
     }
     printf("\n");
 }
