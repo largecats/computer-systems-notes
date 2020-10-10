@@ -1,6 +1,7 @@
 #include <stdio.h>
 #include "show_bytes.h"
 
+/* show_bytes: print len bytes from position start in hexadecimal */
 void show_bytes(byte_pointer start, size_t len) {
     int i;
     for (i = 0; i < len; i++) {
