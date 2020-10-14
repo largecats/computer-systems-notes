@@ -11,6 +11,7 @@ void show_bytes(byte_pointer start, size_t len) {
     printf("\n");
 }
 
+
 void show_int(int x) {
     show_bytes((byte_pointer) &x, sizeof(int));
 }
