@@ -18,8 +18,8 @@ int tmult_ok(int x, int y) {
 }
 
 /*
-$ gcc chapter2/2.3.5/main.c helper_functions.c -o chapter2/2.3.5/output.o
-$ chapter2/2.3.5/output.o
+$ gcc chapter2/practice_problem_2.36/main.c helper_functions.c -o chapter2/practice_problem_2.36/output.o
+$ chapter2/practice_problem_2.36/output.o
 p = 4611686014132420609
 Multiply without overflow? 0
 */
