@@ -1,3 +1,9 @@
+# latex
+*.log
+*.aux
+*.out
+*.synctex.gz
+
 # Prerequisites
 *.d
 

@@ -1,0 +1,81 @@
+\usepackage[T1]{fontenc}
+\renewcommand*\familydefault{\sfdefault}
+
+\usepackage[top=3cm,bottom=3cm,left=2cm,right=2cm]{geometry}
+\usepackage{amsmath,amsthm,amsfonts,amssymb,microtype,fancyhdr,lastpage,hhline,enumerate,multicol,tcolorbox,color}
+%\usepackage[usenames,dvipsnames,svgnames,table]{xcolor}
+%\usepackage[pdftex]{graphicx}
+%\usepackage[urlcolor=blue]{hyperref}
+\usepackage[T1]{fontenc}
+\usepackage{lmodern}
+
+
+\setlength{\columnsep}{2cm}
+
+\newcommand{\thetop}[4]{
+\pagestyle{fancy}
+\fancyhead{}
+\fancyhead[L]{{\LARGE #1}\vspace{0pt}}
+\fancyfoot{}
+\fancyfoot[LO,RE]{\vspace{-3pt}#3}
+\fancyfoot[RO,LE]{\vspace{-3pt}#2}
+\fancyfoot[C]{\vspace{-3pt}#4}
+\renewcommand{\headrulewidth}{0.75pt}
+\renewcommand{\footrulewidth}{0.5pt}
+}
+
+\newcommand{\lecture}[1]{\thetop{#1}{Course Notes}{YSC3237}{Introduction to Modern Algebra}}
+\newcommand{\handout}[2]{\thetop{#1}{#2}{YSC3237}{Introduction to Modern Algebra}}
+\newcommand{\problems}[2]{\thetop{Problem Set #1}{Week #2}{YSC3237}{Introduction to Modern Algebra}}
+\newcommand{\homework}[2]{\thetop{Assignment #1}{Due: #2}{YSC3237}{Introduction to Modern Algebra}}
+\newcommand{\project}[2]{\thetop{#1}{#2}{YSC3237}{Introduction to Modern Algebra}}
+\newcommand{\exam}[2]{\thetop{#1}{#2}{YSC3237}{Introduction to Modern Algebra}}
+
+
+\newtheorem{theorem}{Theorem}
+\newtheorem{corollary}[theorem]{Corollary}
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{identity}{Identity}
+\newtheorem{fact}[theorem]{Fact}
+\newtheorem{conjecture}[theorem]{Conjecture}
+\newtheorem{claim}{Claim}
+\newtheorem{problem}{Problem}
+
+\renewenvironment{proof}[1][Proof.]{\begin{trivlist}
+\item[\hskip \labelsep {\textit{#1}}]}{\qed\end{trivlist}}
+\newenvironment{solution}[1][Solution.]{\begin{trivlist}
+\item[\hskip \labelsep {\bfseries #1}]}{\end{trivlist}}
+\newenvironment{definition}[1]{\begin{tcolorbox}[width=\columnwidth,left=3mm,right=3mm,before skip=5mm,after skip=5mm,title=Definition]#1}{\end{tcolorbox}}
+\newenvironment{notation}[1]{\begin{tcolorbox}[width=\columnwidth,left=3mm,right=3mm,before skip=5mm,after skip=5mm,title=Notation]#1}{\end{tcolorbox}}
+\newenvironment{example}[1][Example.]{\begin{trivlist}
+\item[\hskip \labelsep {\bfseries #1}]}{\end{trivlist}}
+\newenvironment{exercise}[1][Exercise.]{\begin{trivlist}
+\item[\hskip \labelsep {\bfseries #1}]}{\end{trivlist}}
+\newenvironment{remark}[1][Remark.]{\begin{trivlist}
+\item[\hskip \labelsep {\textit{#1}}]}{\end{trivlist}}
+\newenvironment{question}[1][Question.]{\begin{trivlist}
+\item[\hskip \labelsep {\bfseries #1}]}{\end{trivlist}}
+
+\def\F{\mathbb F}
+\def\Q{\mathbb Q}
+\def\Z{\mathbb Z}
+\def\R{\mathbb R}
+\def\C{\mathbb C}
+\def\N{\mathbb N}
+\def\P{\mathbf P}
+\def\NP{\mathbf N\mathbf P}
+\DeclareMathOperator{\im}{im}
+\DeclareMathOperator{\Fix}{Fix}
+\DeclareMathOperator{\co}{\mathbf c \mathbf o}
+
+\def\from{\gets}
+\def\isin{\subseteq}
+\def\iso{\cong}
+\def\st{\ |\ }
+
+
+%\renewcommand{\cftsecleader}{\cftdotfill{\cftdotsep}}
+%\renewcommand\labelenumi{(\roman{enumi})}
+
+

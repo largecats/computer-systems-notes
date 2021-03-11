@@ -1,0 +1,58 @@
+\documentclass[11pt, oneside, a4paper]{article}
+
+\input{../preamble.tex}
+%----------------------------------
+
+\begin{document}
+\textbf{Practice Problem 2.35}\\
+
+If $x=0$, the multiplication does not overflow. 
+
+Consider $w$-bit numbers $x$ ($x\neq 0$), $y$, $p$, and $q$, where $p$ is the result of performing two’s complement multiplication on $x$ and $y$, and $q$ is the result of dividing $p$ by $x$.
+
+Let $\vec{p}=[p_{w-1}, p_{w-2},\ldots, p_0]$ be the binary representation of $p$.
+
+\begin{enumerate}
+    \item Show that $x\cdot y$, the integer product of $x$ and $y$, can be written in the form
+    $x \cdot y = p + t2^w$, where $t\neq 0$ if and only if the computation of $p$ overflows.
+    \begin{proof}
+        By Equation 2.3, for vector $\vec{x}=[x_{w-1}, x_{w-2}, \ldots, x_0]$,
+        \[B2T_w(\vec{x}) = -x_{w-1}2^{w-1} + \sum_{i=0}^{w-2}x_i2^i.\]
+        Let $\vec{z} = [z_{2w-1}, z_{2w-2}, \ldots, z_0]$ denote the $2w$-bit two's complement representation of $x\cdot y$, then
+        \begin{align*}
+            B2T_{2w}(\vec{z}) &= -z_{2w-1}2^{2w-1} + \sum_{i=0}^{2w-2}z_i2^i\\
+            &= \left(-z_{2w-1}2^{2w-1} + \sum_{i=w}^{2w-2}z_i2^i\right) + \sum_{i=0}^{w-1}z_i2^i \\
+            &= \left(-z_{2w-1}2^{w-1} + \sum_{i=0}^{w-2}z_i2^i\right)\cdot 2^w + \sum_{i=0}^{w-1}z_i2^i.
+        \end{align*}
+        Let $\vec{v} := [z_{2w-1}, z_{2w-2}, \ldots, z_w]$ and $\vec{u} := [z_{w-1}, z{w-2}, \ldots, z_0]$. Then the above is
+        \[B2T_w(\vec{v})\cdot 2^w + B2U_w(\vec{u}),\]
+        which we write as
+        \[v\cdot 2^w + u\]
+        with $v=B2T_w(\vec{v})$ and $u=B2U_w(\vec{u})$.
+        
+        By definition, $p= x *^t_w y$ and $u = x *^u_w y$. By the bit-level equivalence of unsigned and two's complement multiplication, they are the two's complement and unsigned interpretations of the same binary representation. By Equation 2.6, conversion from two's complement to unsigned interpretation is done via
+        \[T2U_w(\vec{x}) = x + x_{w-1}2^w,\]
+        where $x$ is the two's complement interpretation of $\vec{x}$.
+        Thus, $u = p + p_{w-1}2^w.$ 
+        
+        With $t:=v+p_{w-1}$, we have
+        \[x\cdot y = u + v2^w = p + (p_{w-1}+v)2^w = p + t2^w.\]
+
+        By this equation, $x\cdot y=p$ if and only if $t=0$, which is when the multiplication does not overflow.
+    \end{proof}
+
+    \item Show that $p$ can be written in the form $p = x \cdot q + r$, where $|r| < |x|$.
+    
+    This follows from the definition of integer division.
+
+    \item Show that $q = y$ if and only if $r = t = 0$.
+    \begin{proof}
+        Suppose $q=y$. Then $p=x\cdot y+r$ by 2. By 1, $x\cdot y = p + t2^w$. So
+        \[p = p + t2^w + r,\]
+        which means $t2^w+r=0$. But $|r|<|x|\leq 2^w$ (since $x$ is $w$-bit), so we must have $r=t=0$.
+
+        Suppose $r=t=0$. Then $x\cdot y = p$ by 1. and $p = x\cdot q$ by 2. Thus, $q=y$.
+    \end{proof}
+
+\end{enumerate}
+\end{document}
