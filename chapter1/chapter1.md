@@ -178,6 +178,16 @@ $$
 
 **Parallelism.** The use of concurrency to make a system run faster.
 
+**Thread-level concurrency.** Allows multiple control flows executing within a single process.
+
+**Hyperthreading.** Technique that allows a single CPU to execute multiple flows of control.
+
+**Instruction-level parallelism.** Allows processor to execute multiple instructions at one time.
+
+**Superscalar processor.** Execution rates faster than 1 instruction per cycle.
+
+**Single-instruction, multiple-data (SIMD) parallelism.** Special hardware that allows a single instruction to cause multiple operations to be performed in parallel.
+- Used to speed up applications that process image, sound, and video data.
 
 
 
