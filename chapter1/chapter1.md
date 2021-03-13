@@ -120,4 +120,65 @@ Executing `hello` program:
 ### Virtual Memory
 
 **Virtual memory.** Abstraction that provides the illusion that each process has exclusive use of the main memory.
- 
+![](virtual_address_space.png)
+
+From bottom to top:
+
+**Program code and data.** Initialized directly from the executable object file.
+
+**Run-time heap.** Expands and contracts at runtime as a result of `malloc` and `free`.
+
+**Shared libraries.** C standard library and the math library.
+- Dynamic linking: Loads and links shared libraries needed by an executable when it is executed.
+
+**User stack.** Grows when we call a function, contracts when we return a function.
+
+**Kernel virtual memory.** Reserved for kernel.
+
+### Files
+
+**File.** A sequence of bytes.
+- Every I/O device is modeled as a file.
+
+### Network
+
+**Network.** From an individual system’ point of view, network is just another I/O device.
+
+## Themes
+
+### Amdahl’s Law
+
+**Amdahl’s law.** When we speed up part of a system, the effect on the overall system performance depends on
+1. How significant this part was, and 
+2. How much it sped up.
+
+E.g., suppose:
+- Original overall execution time: $T_\text{old}$
+- Some part requires a fraction $\alpha$ of this time
+- Improve this part by factor of $k$
+Then:
+- New overall execution time:
+$$
+T_\text{new} = (1-\alpha)T_\text{old} + (\alpha T_\text{old})/k
+$$
+
+So the overall improvement is
+$$
+T_\text{old}/T_\text{new} = \frac{1}{(1-\alpha) + \alpha/k}
+$$
+
+Note that if we speed up this part so that it takes negligible amount of time (take $k$ to infinity), the overall improvement would be
+$$
+\frac{1}{(1-\alpha)
+$$
+
+### Concurrency and Parallelism
+
+**Concurrency.** System with multiple simultaneous activities.
+
+**Parallelism.** The use of concurrency to make a system run faster.
+
+
+
+
+
