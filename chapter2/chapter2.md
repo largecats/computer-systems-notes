@@ -32,8 +32,8 @@ Motivation for hexadecimal notation:
 ### Data sizes
 
 For a machine with $\omega$-bit word size, its virtual address space is $[0, 2^{\omega}-1]$ (each address is encoded in a word). Each virtual address points to a byte in physical memory.
-- A 32-bit machine has $2^32-1$ virtual addresses.
-- A 64-bit machine has $2^64-1$ virtual addresses.
+- A 32-bit machine has $2^{32}-1$ virtual addresses.
+- A 64-bit machine has $2^{64}-1$ virtual addresses.
 ![](virtual_memory_physical_memory.png)
 
 **Single precision.** 4-byte floating point format.
@@ -50,3 +50,16 @@ A multi-byte object is stored as a contiguous sequence of bytes, with the addres
 Conversion between big/little endian machines in network communication: Sending machine internal representation <=> network standard <=> receiving machine internal representation.
 
 **Dissembler.** A tool that determines the instruction sequence represented by an executable program file.
+
+### Boolean Algebra
+
+**Bit vectors.** Strings of 0s and 1s of some fixed length $\omega$.
+- Can represent finite sets: Can encode any subset $A \subseteq {0,1,\ldots,\omega-1}$ with bit vector $[a_{\omega-1}, \ldots, a_1, a_0]$, where $a_i = 1$ if and only if $i\in A$.
+    - E.g., $A={0,3,5,6}$ can be encoded by $a=[01101001]$ (reverse the positions).
+- |: Set union
+- &: Set intersection
+- ~: Set complement
+
+**Mask.** A bit pattern that indicates a selected set of bits within a word.
+- E.g., 0xFF selects the lower-order byte of a word.
+
