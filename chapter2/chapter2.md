@@ -32,7 +32,7 @@ Motivation for hexadecimal notation:
 ### Data sizes
 
 For a machine with $\omega$-bit word size, its virtual address space is $[0, 2^{\omega}-1]$ (each address is encoded in a word). Each virtual address points to a byte in physical memory.
-- A 32-bit machine has $2^{32}-1$ virtual addresses.
+- A 32-bit machine has $2^{32}-1 ~ 4\cdot 10^9$ virtual addresses, which is 4 GB (gigabytes).
 - A 64-bit machine has $2^{64}-1$ virtual addresses.
 ![](virtual_memory_physical_memory.png)
 
@@ -63,3 +63,24 @@ Conversion between big/little endian machines in network communication: Sending 
 **Mask.** A bit pattern that indicates a selected set of bits within a word.
 - E.g., 0xFF selects the lower-order byte of a word.
 
+### Shift operations
+
+**Left shift.** x<<k: $[x_{\omega-1}, x_{\omega-2}, \ldots, x_0]$ to $[x_{\omega-1}, x_{\omega-2}, \ldots, x_0, 0, \ldots, 0]$ with k trailing 0s.
+
+**Logical right shift.** x>>k: $[0, \ldots, 0, x_{\omega-1}, x_{\omega-2}, \ldots, x_k]$.
+- Usually used for unsigned data.
+- Written as x >>> k in Java.
+
+**Arithmetic right shift.** x>>k: $[x_{\omega-1}, \ldots, x_{\omega-1}, x_{\omega-1}, x_{\omega-2}, \ldots, x_k]$.
+- Usually used for signed data.
+
+**Modular shift.** For x with $\omega$ bits, x >> k and x << k are usually treated as x >> or << k mod $\omega$.
+- This is guaranteed in Java but not in C.
+
+## Integer Representations
+
+### Integral Data Types
+
+**Integral data types.** Data types that represent finite ranges of integers.
+- Numbers of bytes allocated for each data type depends on whether the program is compiled for 32 or 64 bits.
+![](integral_data_types.png)
