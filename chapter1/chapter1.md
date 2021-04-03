@@ -86,7 +86,7 @@ Executing `hello` program:
 **Cache memories.** Temporary staging areas for information that the processor is likely to need in near future.
 
 **Memory hierarchy.** Storage at one level serves as cache for storage at the next level.
-![](memory_hierarchy.png)
+![](images/memory_hierarchy.png)
 
 ## Operating System
 
@@ -107,6 +107,7 @@ Executing `hello` program:
 - Current values of the PC, contents of main memory, etc.
 
 **Context switch.** Transfer control from current process to another process: Save the context of current process, restore the context of the other process, and pass control to the other process.
+
 - E.g., shell process -> hello process -> shell process.
 
 **Kernel.** Portion of the operating system code that resides in memory and manages process switching.
@@ -120,7 +121,7 @@ Executing `hello` program:
 ### Virtual Memory
 
 **Virtual memory.** Abstraction that provides the illusion that each process has exclusive use of the main memory.
-![](virtual_address_space.png)
+![](images/virtual_address_space.png)
 
 From bottom to top:
 
