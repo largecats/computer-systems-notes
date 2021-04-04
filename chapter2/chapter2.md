@@ -19,9 +19,9 @@
 
 Motivation for hexadecimal notation:
 - Binary <=> hex is straightforward, one hex digit at a time.
-![](hexadecimal.jpg)
+![](images/hexadecimal.jpg)
 - Decimal <=> hex is faster than decimal <=> binary
-![](decimal_to_hex.png)
+![](images/decimal_to_hex.png)
 
 |  Decimal  | Hexadecimal | Binary |
 | --- | --- | --- |
@@ -34,7 +34,7 @@ Motivation for hexadecimal notation:
 For a machine with $\omega$-bit word size, its virtual address space is $[0, 2^{\omega}-1]$ (each address is encoded in a word). Each virtual address points to a byte in physical memory.
 - A 32-bit machine has $2^{32}-1 ~ 4\cdot 10^9$ virtual addresses, which is 4 GB (gigabytes).
 - A 64-bit machine has $2^{64}-1$ virtual addresses.
-![](virtual_memory_physical_memory.png)
+![](images/virtual_memory_physical_memory.png)
 
 **Single precision.** 4-byte floating point format.
 
@@ -46,7 +46,7 @@ A multi-byte object is stored as a contiguous sequence of bytes, with the addres
 
 **Big endian.** From most significant byte to least.
 
-![](big_endian_little_endian.png)
+![](images/big_endian_little_endian.png)
 Conversion between big/little endian machines in network communication: Sending machine internal representation <=> network standard <=> receiving machine internal representation.
 
 **Dissembler.** A tool that determines the instruction sequence represented by an executable program file.
@@ -54,8 +54,8 @@ Conversion between big/little endian machines in network communication: Sending 
 ### Boolean Algebra
 
 **Bit vectors.** Strings of 0s and 1s of some fixed length $\omega$.
-- Can represent finite sets: Can encode any subset $A \subseteq {0,1,\ldots,\omega-1}$ with bit vector $[a_{\omega-1}, \ldots, a_1, a_0]$, where $a_i = 1$ if and only if $i\in A$.
-    - E.g., $A={0,3,5,6}$ can be encoded by $a=[01101001]$ (reverse the positions).
+- Can represent finite sets: Can encode any subset $A \subseteq \{0,1,\ldots,\omega-1\}$ with bit vector $[a_{\omega-1}, \ldots, a_1, a_0]$, where $a_i = 1$ if and only if $i\in A$.
+    - E.g., $A=\{0,3,5,6\}$ can be encoded by $a=[01101001]$ (reverse the positions).
 - |: Set union
 - &: Set intersection
 - ~: Set complement
@@ -83,4 +83,38 @@ Conversion between big/little endian machines in network communication: Sending 
 
 **Integral data types.** Data types that represent finite ranges of integers.
 - Numbers of bytes allocated for each data type depends on whether the program is compiled for 32 or 64 bits.
-![](integral_data_types.png)
+![](images/integral_data_types.png)
+
+### Encodings
+
+**Binary to unsigned (B2U).** For binary vector $\vec{x} = [x_{\omega-1}, x_{\omega-2},\ldots,x_0]$:
+$$
+B2U_{\omega}(\vec{x}) := \sum_{i=0}^{\omega-1}x_i2^i
+$$
+is the unsigned encoding of $\vec{x}$.
+
+- E.g., $B2U_4([1011]) = 1\cdot 2^3 + 0\cdot 2^2 + 1\cdot 2^1 + 1\cdot 2^0 = 11$.
+- $UMin_{\omega} = [00\cdots 0] = 0$.
+- $UMax_{\omega} = [11\cdots1] = \sum_{i=0}^{\omega-1}x_i2^i = 2^{\omega}-1$.
+- So $B2U_{\omega}: \{0,1\}^{\omega} \rightarrow \{0,\ldots,UMax_{\omega}\}$.
+- Bijection.
+
+**Binary to two's complement (B2T).** For binary vector $\vec{x} = [x_{\omega-1}, x_{\omega-2},\ldots,x_0]$:
+$$
+B2T_{\omega}(\vec{x}) ;= -x_{\omega-1}2^{\omega-1} + \sum_{i=0}^{\omega-2}x_i2^i
+$$
+is the two's complement encoding of $\vec{x}$.
+
+- E.g., $B2T_4([1011]) = -1\cdot 2^3 + 0\cdot 2^2 + 1\cdot 2^1 + 1\cdot 2^0 = -5$.
+
+- The most significant bit, $x_{\omega-1}$, is the sign bit.
+
+- $TMin_{\omega} = [10\cdots 0] = -2^{\omega-1}$.
+
+- $TMax_{\omega} = [01\cdots 1] = 0\cdot (-2^{\omega-1}) + 2^{\omega-2} + 2^{\omega-3} + \cdots + 2^1 + 2^0 = 2^{\omega-1}-1$. Recall geometric partial sum formula
+  $$
+  a + ar + ar^2 + \cdots + ar^n = a\left(\frac{1-r^{n+1}}{1-r}\right).
+  $$
+
+- So $B2T_{\omega}:\{0,1\}^{\omega}\to \{-2^{\omega-1},\cdots,2^{\omega-1}-1\}$.
+- Bijection.
