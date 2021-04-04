@@ -87,6 +87,8 @@ Conversion between big/little endian machines in network communication: Sending 
 
 ### Encodings
 
+#### Unsigned
+
 **Unsigned.** For binary vector $\vec{x} = [x_{\omega-1}, x_{\omega-2},\ldots,x_0]$:
 $$
 B2U_{\omega}(\vec{x}) := \sum_{i=0}^{\omega-1}x_i2^i
@@ -98,6 +100,8 @@ is the unsigned encoding of $\vec{x}$.
 - $UMax_{\omega} = [11\cdots1] = \sum_{i=0}^{\omega-1}x_i2^i = 2^{\omega}-1$.
 - So $B2U_{\omega}: \{0,1\}^{\omega} \rightarrow \{0,\ldots,UMax_{\omega}\}$.
 - Bijection.
+
+#### Signed
 
 **Two’s complement.** For binary vector $\vec{x} = [x_{\omega-1}, x_{\omega-2},\ldots,x_0]$:
 $$
@@ -117,8 +121,26 @@ is the two's complement encoding of $\vec{x}$.
   $$
 
 - So $B2T_{\omega}:\{0,1\}^{\omega}\to \{-2^{\omega-1},\cdots,2^{\omega-1}-1\}$.
+
 - Bijection.
+
 - Two’s complement: $-x = 2^{\omega}-x$ (a single two).
+
+![](images/twos_complement.png)
+
+Given the binary representation of $-12345$, how do we know that the binary representation of $12345$ is obtained by inverting each bit and adding $1$?
+
+We know that due to the different coefficient in front of the signed bit, the signed binary representation of $-12345$ and its unsigned counterpart $53191$ is $2^{16}$ apart. That is, $53191 - (-12345) = 2^{16}$. Thus, $12345 = 2^{16} - 53191$.
+
+By the definition of binary calculation, we also know that the binary representation of $2^{16} - 53191 = [10\cdots 0] - 53191 = [10\cdots 0] - [1100 1111 1100 0111]$, which is obtained by inverting each bit in the binary representation of $53191$ and adding $1$.
+
+```
+   10000000000000000
+-	1100111111000111
+=	0011000000111001
+```
+
+The above is precisely the binary representation of the additive inverse of $12345$.
 
 ![](images/important_numbers.png)
 
