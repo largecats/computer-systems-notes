@@ -87,7 +87,7 @@ Conversion between big/little endian machines in network communication: Sending 
 
 ### Encodings
 
-**Binary to unsigned (B2U).** For binary vector $\vec{x} = [x_{\omega-1}, x_{\omega-2},\ldots,x_0]$:
+**Unsigned.** For binary vector $\vec{x} = [x_{\omega-1}, x_{\omega-2},\ldots,x_0]$:
 $$
 B2U_{\omega}(\vec{x}) := \sum_{i=0}^{\omega-1}x_i2^i
 $$
@@ -99,9 +99,9 @@ is the unsigned encoding of $\vec{x}$.
 - So $B2U_{\omega}: \{0,1\}^{\omega} \rightarrow \{0,\ldots,UMax_{\omega}\}$.
 - Bijection.
 
-**Binary to two's complement (B2T).** For binary vector $\vec{x} = [x_{\omega-1}, x_{\omega-2},\ldots,x_0]$:
+**Two’s complement.** For binary vector $\vec{x} = [x_{\omega-1}, x_{\omega-2},\ldots,x_0]$:
 $$
-B2T_{\omega}(\vec{x}) ;= -x_{\omega-1}2^{\omega-1} + \sum_{i=0}^{\omega-2}x_i2^i
+B2T_{\omega}(\vec{x}) := -x_{\omega-1}2^{\omega-1} + \sum_{i=0}^{\omega-2}x_i2^i
 $$
 is the two's complement encoding of $\vec{x}$.
 
@@ -118,3 +118,30 @@ is the two's complement encoding of $\vec{x}$.
 
 - So $B2T_{\omega}:\{0,1\}^{\omega}\to \{-2^{\omega-1},\cdots,2^{\omega-1}-1\}$.
 - Bijection.
+- Two’s complement: $-x = 2^{\omega}-x$ (a single two).
+
+![](images/important_numbers.png)
+
+**Ones’ complement.** For binary vector $\vec{x} = [x_{\omega-1}, x_{\omega-2},\ldots,x_0]$:
+$$
+B2O_{\omega}(\vec{x}) := -x_{\omega-1}(2^{\omega-1} - 1) + \sum_{i=0}^{\omega-2}x_i2^i
+$$
+is the ones’ complement encoding of $\vec{x}$.
+- Symmetric: $|OMin_{\omega}| = |OMax_{\omega}| = 2^{\omega-1}$.
+- Two encodings of 0: 
+    - $+0 = [00\cdots 0]$
+    - $-0 = [11\cdots 1]$ (due to the above symmetry)
+- Ones’ complement: $-x = [11\cdots 1] - x$ (multiple ones).
+
+**Sign magnitude.** For binary vector $\vec{x} = [x_{\omega-1}, x_{\omega-2},\ldots,x_0]$:
+$$
+B2S_{\omega}(\vec{x}) := (-1)^{x_{\omega-1} } \cdot \left(\sum_{i=0}^{\omega-2}x_i2^i\right)
+$$
+is the sign magnitude encoding of $\vec{x}$.
+- Two encodings of 0: 
+    - $+0 = [00\cdots 0]$
+    - $-0 = [10\cdots 0]$
+- Used with floating-point numbers.
+
+
+
